@@ -1,42 +1,45 @@
 class Node:
-    def __init__(self, coef, exp):
-        self.coef = coef
+    def __init__(self, co_ef, exp):
+        self.co_ef = co_ef
         self.exp = exp
         self.next = None
 
-def add_term(poly, coef, exp):
-    new_node = Node(coef, exp)
+
+def add_term(poly, co_ef, exp):
+    new_node = Node(co_ef, exp)
     if poly is None:
         return new_node
-    curr = poly
+    current = poly
     prev = None
-    while curr is not None and curr.exp > exp:
-        prev = curr
-        curr = curr.next
-    if curr is not None and curr.exp == exp:
-        curr.coef += coef
+    while current is not None and current.exp > exp:
+        prev = current
+        current = current.next
+    if current is not None and current.exp == exp:
+        current.co_ef += co_ef
     else:
-        new_node.next = curr
+        new_node.next = current
         if prev is not None:
             prev.next = new_node
         else:
             poly = new_node
     return poly
 
+
 def conv_LL(l, m):
     if l is None or m is None:
         return None
-    result = None
+    search = None
     curr_l = l
     while curr_l is not None:
         curr_m = m
         while curr_m is not None:
-            coef = curr_l.coef * curr_m.coef
+            co_ef = curr_l.co_ef * curr_m.co_ef
             exp = curr_l.exp + curr_m.exp
-            result = add_term(result, coef, exp)
+            search = add_term(search, co_ef, exp)
             curr_m = curr_m.next
         curr_l = curr_l.next
-    return result
+    return search
+
 
 # l = 1x^0 + 2x^2 + 3x^3 + 4x^5
 l = Node(1, 0)
@@ -56,5 +59,5 @@ result = conv_LL(l, m)
 # print the result
 curr = result
 while curr is not None:
-    print(f"{curr.coef}x^{curr.exp}", end=" + " if curr.next is not None else "")
+    print(f"{curr.co_ef}x^{curr.exp}", end=" + " if curr.next is not None else "")
     curr = curr.next

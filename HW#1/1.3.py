@@ -1,32 +1,32 @@
 class Node:
-    def __init__(self, val=0, next=None):
+    def __init__(self, val=0):
         self.val = val
-        self.next = next
+        self.next = None
 
 
-def deleteDuplicateNodes(head):
+def deleteDuplicateNodes(head_node):
     # Handle empty or singleton linked list case.
-    if not head or not head.next:
-        return head
+    if not head_node or not head_node.next:
+        return head_node
 
     # Create a dictionary to keep track of node values.
     values = {}
-    curr = head
-    while curr:
-        if curr.val not in values:
-            values[curr.val] = 1
+    current = head_node
+    while current:
+        if current.val not in values:
+            values[current.val] = 1
         else:
-            values[curr.val] += 1
-        curr = curr.next
+            values[current.val] += 1
+        current = current.next
 
     # Create a new linked list with unique nodes.
     new_head = Node()
-    curr = new_head
-    old_curr = head
+    current = new_head
+    old_curr = head_node
     while old_curr:
         if values[old_curr.val] == 1:
-            curr.next = Node(old_curr.val)
-            curr = curr.next
+            current.next = Node(old_curr.val)
+            current = current.next
         old_curr = old_curr.next
 
     return new_head.next
@@ -38,6 +38,12 @@ head.next = Node(2)
 head.next.next = Node(1)
 head.next.next.next = Node(3)
 head.next.next.next.next = Node(2)
+
+curr = head
+while curr:
+    print(curr.val, end="->")
+    curr = curr.next
+print("")
 
 # Delete nodes with duplicated values
 head = deleteDuplicateNodes(head)

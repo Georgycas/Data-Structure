@@ -3,6 +3,7 @@ class Node:
         self.val = val
         self.next = None
 
+
 def diffElem_LL(l, m):
     # Create sets to store char values of each linked list
     set_l = set()
@@ -41,6 +42,7 @@ def diffElem_LL(l, m):
         ptr_m = ptr_m.next
 
     return head.next
+
 
 # Create linked list l with char type nodes
 l = Node("G")

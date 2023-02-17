@@ -17,6 +17,7 @@ def is_loopLL(head: ListNode) -> bool:
 
     return False
 
+
 # Test Case 1
 # create a linked list with a loop
 node4 = ListNode(4)

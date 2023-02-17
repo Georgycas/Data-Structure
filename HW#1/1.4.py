@@ -1,23 +1,30 @@
 class Node:
-    def __init__(self, val=0, next=None):
+    def __init__(self, val):
         self.val = val
-        self.next = next
+        self.next = None
 
 
-def reverseLinkedList(head):
+def reverseLinkedList(head_node):
     prev = None
-    curr = head
-    while curr:
-        next_node = curr.next
-        curr.next = prev
-        prev = curr
-        curr = next_node
+    current = head_node
+    while current:
+        next_node = current.next
+        current.next = prev
+        prev = current
+        current = next_node
     return prev
+
 
 # Create a linked list
 head = Node(1)
 head.next = Node(2)
 head.next.next = Node(3)
+
+curr = head
+while curr:
+    print(curr.val, end="->")
+    curr = curr.next
+print("")
 
 # Reverse the linked list
 head = reverseLinkedList(head)
